@@ -18,7 +18,7 @@ public class SharpeScreener {
     public static void main(String[] args) throws IOException {
 
         // Parse CSV
-        String file = "data/FTSE_100_close.csv";
+        String file = "data/S&P_TSX_close.csv";
         Reader reader = Files.newBufferedReader(Paths.get(file));
         CSVParser parsed = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader()
                 .withIgnoreHeaderCase().withTrim());
@@ -78,7 +78,7 @@ public class SharpeScreener {
         CSVPrinter printer = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("Ticker","Sharpe Ratio"));
         for (Map.Entry<String, Double> entry : sorted.entrySet())
             //if(entry.getValue() >= sorted.get("AMZN")) printer.printRecord(entry.getKey(),entry.getValue());
-            if(entry.getValue() >= 0.8) printer.printRecord(entry.getKey(),entry.getValue());
+            if(entry.getValue() >= 1.2236079936706479) printer.printRecord(entry.getKey(),entry.getValue());
         printer.flush();
     }
 }
